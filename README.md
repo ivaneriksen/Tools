@@ -37,7 +37,7 @@ Requirements: .NET 10 SDK and Visual Studio (or another C# editor).
 1. Clone the repo: `git clone https://github.com/ivaneriksen/Tools.git`
 2. Open `Tools.sln` in Visual Studio.
 3. Set `BaseConverter.Web` as the startup project.
-4. Press F5.
+4. Smash your head against the keyboard until you hit F5.
 
 ## Deployment
 
