@@ -1,4 +1,4 @@
-﻿namespace BaseConverter
+﻿namespace BaseConverter.Core
 {
     // Convert to and from any base between 2 and 36 using Horner's method.
     public static class Converter
