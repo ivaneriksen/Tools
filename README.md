@@ -16,7 +16,7 @@ Built to practice C# and web development, and hopefully give my classmates some 
 ## Tech stack
 
 - C# / .NET 10
-- Blazor WebAssembly (runs entirely in the browser - no server)
+- Blazor WebAssembly
 - Bootstrap 5 with a custom dark theme
 - GitHub Actions for automatic build and deployment
 - GitHub Pages for hosting
