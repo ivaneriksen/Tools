@@ -2,7 +2,7 @@
 
 Small collection of web tools for my class at data- og kommunikationsuddannelsen - built with C# and Blazor WebAssembly.
 
-Built to practice C# and web development, and hopefully give my classmates something useful for our assignments.
+Built to practice C# and web development, and hopefully give my classmates some useful tools for our assignments.
 
 **Try it live:** https://ivaneriksen.github.io/Tools/
 
