@@ -1,41 +1,66 @@
 ﻿@page "/base-converter"
 <h1>Base Converter</h1>
 
-<div>
-    <label>Number:</label>
-    <input @bind="input" />
-</div>
-<div>
-    <label>From base:</label>
-    <select @bind="fromBase">
-        @for (int b = 2; b <= 36; b++)
-        {
-            <option value="@b">@b</option>
-        }
-    </select>
-</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
 
-<button @onclick="DoConvert">Convert</button>
+                <div class="row g-2 align-items-center mb-4">
+                    <div class="col-2">
+                        <label class="col-form-label">Number:</label>
+                    </div>
+                    <div class="col-5">
+                        <input class="form-control" @bind="input" />
+                    </div>
+                    <div class="col-3">
+                        <label class="col-form-label">From base:</label>
+                    </div>
+                    <div class="col-2">
+                        <select class="form-select" @bind="fromBase">
+                            @for (int b = 2; b <= 36; b++)
+                            {
+                                <option value="@b">@b</option>
+                            }
+                        </select>
+                    </div>
+                </div>
 
-<div>
-    <label>Result:</label>
-    <input value="@result" readonly />
+                <div class="row g-2 mb-4">
+                    <div class="col-5 offset-2">
+                        <button class="btn btn-primary w-100" @onclick="DoConvert">Convert</button>
+                    </div>
+                </div>
+
+                <div class="row g-2 align-items-center">
+                    <div class="col-2">
+                        <label class="col-form-label">Result:</label>
+                    </div>
+                    <div class="col-5">
+                        <input class="form-control" value="@result" readonly />
+                    </div>
+                    <div class="col-3">
+                        <label class="col-form-label">To base:</label>
+                    </div>
+                    <div class="col-2">
+                        <select class="form-select" @bind="toBase">
+                            @for (int b = 2; b <= 36; b++)
+                            {
+                                <option value="@b">@b</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                @if (errorMessage != null)
+                {
+                    <div class="alert alert-danger mt-4 mb-0">@errorMessage</div>
+                }
+
+            </div>
+        </div>
+    </div>
 </div>
-@if (errorMessage != null)
-{
-    <p style="color: red">@errorMessage</p>
-}
-
-<div>
-    <label>To base:</label>
-    <select @bind="toBase">
-        @for (int b = 2; b <= 36; b++)
-        {
-            <option value="@b">@b</option>
-        }
-    </select>
-</div>
-
 @code {
     private string input = string.Empty;
     private int fromBase = 10;
