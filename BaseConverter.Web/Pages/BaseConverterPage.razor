@@ -1,0 +1,69 @@
+﻿@page "/base-converter"
+<h1>Base Converter</h1>
+
+<div>
+    <label>Number:</label>
+    <input @bind="input" />
+</div>
+<div>
+    <label>From base:</label>
+    <select @bind="fromBase">
+        @for (int b = 2; b <= 36; b++)
+        {
+            <option value="@b">@b</option>
+        }
+    </select>
+</div>
+
+<button @onclick="DoConvert">Convert</button>
+
+<div>
+    <label>Result:</label>
+    <input value="@result" readonly />
+</div>
+@if (errorMessage != null)
+{
+    <p style="color: red">@errorMessage</p>
+}
+
+<div>
+    <label>To base:</label>
+    <select @bind="toBase">
+        @for (int b = 2; b <= 36; b++)
+        {
+            <option value="@b">@b</option>
+        }
+    </select>
+</div>
+
+@code {
+    private string input = string.Empty;
+    private int fromBase = 10;
+    private int toBase = 2;
+    private string result = string.Empty;
+    private string? errorMessage = null;
+
+    private void DoConvert()
+    {
+        try
+        {
+            result = Converter.Convert(input, fromBase, toBase);
+            errorMessage = null;
+        }
+        catch (ArgumentException ex)
+        {
+            result = string.Empty;
+            errorMessage = ex.Message;
+        }
+        catch (OverflowException)
+        {
+            result = string.Empty;
+            errorMessage = "The number is too large to convert.";
+        }
+        catch (Exception ex)
+        {
+            result = string.Empty;
+            errorMessage = "An unexpected error occurred: " + ex.Message;
+        }
+    }
+}

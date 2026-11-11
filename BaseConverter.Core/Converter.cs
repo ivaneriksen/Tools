@@ -8,6 +8,22 @@
         // Convert a string representation of a number in the specified base to a string representation in another base.
         public static string Convert(string digits, int fromBase, int toBase)
         {
+            // If fromBase is less than 2 or greater than the length of Digits, throw an exception.
+            if (fromBase < 2 || fromBase > Digits.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(fromBase), "Base must be between 2 and {Digits.Length}.");
+            }
+            // If toBase is less than 2 or greater than the length of Digits, throw an exception.
+            if (toBase < 2 || toBase > Digits.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(toBase), "Base must be between 2 and {Digits.Length}.");
+            }
+            // If digits is null or empty, throw an exception.
+            if (string.IsNullOrWhiteSpace(digits))
+            {
+                throw new ArgumentException("Digits cannot be null or empty.", nameof(digits));
+            }
+
             long value = ParseFromBase(digits, fromBase);
             return ConvertToBase(value, toBase);
         }
@@ -26,10 +42,24 @@
         // Parse a string representation of a number in the specified base to a long value.
         private static long ParseFromBase(string digits, int fromBase)
         {
-            long value = 0;
-            for (int i=0; i<digits.Length; i++)
+            digits = digits.Trim().ToUpper();
+            // If the digits string starts with a negative sign, throw an exception.
+            if (digits.StartsWith('-'))
             {
-                value = value * fromBase + Digits.IndexOf(digits[i]);
+                throw new ArgumentException("Negative numbers are not supported.");
+            }
+
+            long value = 0;
+            foreach (char c in digits)
+            {
+                int digitValue = Digits.IndexOf(c);
+
+                if (digitValue < 0 || digitValue >= fromBase)
+                {
+                    throw new ArgumentException($"'{c}' is not a valid digit in base {fromBase}.");
+                }
+
+                value = checked(value * fromBase + digitValue);
             }
             return value;
         }
