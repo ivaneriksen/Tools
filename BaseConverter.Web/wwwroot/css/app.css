@@ -111,3 +111,36 @@ code {
 body {
     background-color: #343a40;
 }
+
+/* Your own accent color - change it here and everything follows */
+:root {
+    --accent: #4a7fc1;
+    --accent-dark: #3d6fa8;
+}
+
+/* Outline button in your blue */
+.btn-outline-primary {
+    --bs-btn-color: var(--accent);
+    --bs-btn-border-color: var(--accent);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--accent);
+    --bs-btn-hover-border-color: var(--accent);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--accent-dark);
+    --bs-btn-active-border-color: var(--accent-dark);
+}
+
+/* Lighter card with border, rounded corners and a shadow */
+.card {
+    background-color: #2b3035;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Slightly rounder inputs, dropdowns and buttons */
+.form-control,
+.form-select,
+.btn {
+    border-radius: 8px;
+}
