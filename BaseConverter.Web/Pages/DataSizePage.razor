@@ -78,7 +78,7 @@
             results = DataSizeConverter.ConvertToAll(amount, dataUnit);
             errorMessage = null;
         }
-        catch (ArgumentOutOfRangeException ex)
+        catch (ArgumentOutOfRangeException)
         {
             results = [];
             errorMessage = "Amount can not be negative.";

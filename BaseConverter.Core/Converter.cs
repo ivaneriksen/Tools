@@ -8,6 +8,7 @@
         // Convert a string representation of a number in the specified base to a string representation in another base.
         public static string Convert(string digits, int fromBase, int toBase)
         {
+            
             // If fromBase is less than 2 or greater than the length of Digits, throw an exception.
             if (fromBase < 2 || fromBase > Digits.Length)
             {

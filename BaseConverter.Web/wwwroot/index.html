@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BaseConverter.Web</title>
+    <title>Tools</title>
     <base href="/" />
     <link rel="preload" id="webassembly" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -29,6 +29,17 @@
         <span class="dismiss">🗙</span>
     </div>
     <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
+
+    <script data-goatcounter="https://ivaneriksen.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+    <script>
+            // @ts-nocheck
+            window.countPage = function (path) {
+                if (window.goatcounter && window.goatcounter.count) {
+                    window.goatcounter.count({ path: path });
+                }
+            };
+    </script>
 </body>
 
 </html>

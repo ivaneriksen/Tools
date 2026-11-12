@@ -1,4 +1,9 @@
 ﻿@inherits LayoutComponentBase
+
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+@implements IDisposable
+
 <div class="page">
     <div class="sidebar">
         <NavMenu />
@@ -10,3 +15,21 @@
         </article>
     </main>
 </div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        Navigation.LocationChanged += OnLocationChanged;
+    }
+
+    private async void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        string path = new Uri(e.Location).AbsolutePath;
+        await JS.InvokeVoidAsync("countPage", path);
+    }
+
+    public void Dispose()
+    {
+        Navigation.LocationChanged -= OnLocationChanged;
+    }
+}

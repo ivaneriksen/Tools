@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="BaseConverter.Core/BaseConverter.Core.csproj" />
+  <Project Path="BaseConverter.Tests/BaseConverter.Tests.csproj" />
   <Project Path="BaseConverter.Web/BaseConverter.Web.csproj" />
   <Project Path="BaseConverter/BaseConverter.csproj" />
 </Solution>
