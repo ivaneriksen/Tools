@@ -28,7 +28,7 @@ jobs:
         run: dotnet publish BaseConverter.Web/BaseConverter.Web.csproj -c Release -o release
 
       - name: Fix base href for GitHub Pages
-        run: sed -i 's|<base href="/"|<base href="/Tools/"|' release/wwwroot/index.html
+        run: sed -i 's|<base href="/"|<base href="/tools/"|' release/wwwroot/index.html
 
       - name: Add .nojekyll and 404 fallback
         run: |
