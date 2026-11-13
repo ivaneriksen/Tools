@@ -4,7 +4,7 @@ Small collection of web tools for my class at data- og kommunikationsuddannelsen
 
 Built to practice C# and web development, and hopefully give my classmates some useful tools for our assignments.
 
-**Try it live:** https://ivaneriksen.github.io/Tools/
+**Try it live:** https://ivaneriksen.github.io/tools/
 
 ![Screenshot of the Tools site](screenshot.png)
 
@@ -34,7 +34,7 @@ Tools.sln
 
 Requirements: .NET 10 SDK and Visual Studio (or another C# editor).
 
-1. Clone the repo: `git clone https://github.com/ivaneriksen/Tools.git`
+1. Clone the repo: `git clone https://github.com/ivaneriksen/tools.git`
 2. Open `Tools.sln` in Visual Studio.
 3. Set `BaseConverter.Web` as the startup project.
 4. Smash your head against the keyboard until you hit F5.
