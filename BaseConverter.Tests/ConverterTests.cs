@@ -13,7 +13,7 @@ namespace BaseConverter.Tests
         [InlineData("0", 10, 2, "0")]               // Test case: Zero
         [InlineData("a", 16, 2, "1010")]            // Test case: Lowercase input
         [InlineData(" 2A ", 16, 2, "101010")]       // Test case: Input with whitespace
-        public void Convert_ValidInputs_ReturnsCorrectResult(string input, int fromBase, int toBase, string expected)
+        public void Convert_ValidInput_ReturnsCorrectResult(string input, int fromBase, int toBase, string expected)
         {
             // Act
             string result = Converter.Convert(input, fromBase, toBase);
@@ -39,13 +39,13 @@ namespace BaseConverter.Tests
         [InlineData("4", 37, 10)]                   // Test case: Invalid fromBase (greater than 36)
         [InlineData("7", 10, 1)]                    // Test case: Invalid toBase (less than 2)
         [InlineData("A", 10, 37)]                   // Test case: Invalid toBase (greater than 36)
-        public void Convert_InvalidBases_ThrowsArgumentOutOfRangeException(string input, int fromBase, int toBase)
+        public void Convert_InvalidBase_ThrowsArgumentOutOfRangeException(string input, int fromBase, int toBase)
         {
             // Act & Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => Converter.Convert(input, fromBase, toBase));
         }
 
-        [Fact]
+        [Fact]                                      // Test case: Large number causing overflow
         public void Convert_LargeNumber_ThrowsOverflowException()
         {
             // Arrange
