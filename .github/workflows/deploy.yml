@@ -24,6 +24,9 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
+      - name: Run tests
+        run: dotnet test BaseConverter.Tests/BaseConverter.Tests.csproj -c Release
+
       - name: Publish
         run: dotnet publish BaseConverter.Web/BaseConverter.Web.csproj -c Release -o release
 
