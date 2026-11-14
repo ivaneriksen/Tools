@@ -4,23 +4,38 @@
     {
         static void Main(string[] args)
         {
-            // Test the Converter class
-            Console.WriteLine("------- Base Converter Test -------");
-            Console.WriteLine(Converter.Convert("1010", 2, 10)); // Output: 10
-            Console.WriteLine(Converter.Convert("A", 16, 2)); // Output: 1010
-            Console.WriteLine(Converter.Convert("Z", 36, 10)); // Output: 35
 
-            // Test the DataSizeConverter class
-            Console.WriteLine("------- Data Size Converter Test -------");
-            var gb = DataSizeConverter.AllUnits.First(u => u.Name == "GB");
-            foreach (var size in DataSizeConverter.ConvertToAll(1, gb))
+
+            string[] tests =
             {
-                Console.WriteLine($"{size.Unit.Name}: {size.Amount}");
-            }
-            var bit = DataSizeConverter.AllUnits.First(u => u.Name == "bit");
-            foreach (var size in DataSizeConverter.ConvertToAll(10_000, bit))
+                "2001:db8::1",
+                "::1",
+                "2001:db8::",
+                "::",
+                "2001:0db8:0000:0000:0000:0000:0000:0001",
+                "2001:db8::1::5",
+                "2001:xyz::1",
+                "1:2:3",
+
+                // Some tricky cases
+                "2001:::1",           // three colons
+                "1::2:",              // single colon at the end
+                "1:2:3:4:5:6:7:",     // trailing colon, no ::
+                "1:2:3:4::5:6:7:8",   // :: plus 8 groups
+                "12345::1",           // group too long
+            };
+
+            foreach (string test in tests)
             {
-                Console.WriteLine($"{size.Unit.Name}: {size.Amount}");
+                try
+                {
+                    var result = Ipv6Formatter.Format(test);
+                    Console.WriteLine($"{test,-45} -> {result.ShortAddress} <> {result.FullAddress}");
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine($"{test,-45} -> ERROR: {ex.Message}");
+                }
             }
         }
     }
