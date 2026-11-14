@@ -1,0 +1,64 @@
+﻿@page "/ipv6"
+
+<PageTitle>IPv6 Formatter</PageTitle>
+
+<h1 class="fs-3">IPv6 Formatter</h1>
+
+<div class="row">
+    <div class="col-lg-6">
+
+        <div class="card mb-4">
+            <div class="card-body p-4">
+                <label class="form-label">IPv6 address</label>
+                <input class="form-control font-monospace" placeholder="2001:db8::1"
+                       @bind="input" @bind:event="oninput" @bind:after="Update" />
+            </div>
+        </div>
+
+        @if (errorMessage != null)
+        {
+            <div class="alert alert-danger">@errorMessage</div>
+        }
+
+        @if (result != null)
+        {
+            <div class="card">
+                <div class="card-body p-4">
+                    <label class="form-label">Short form</label>
+                    <input class="form-control font-monospace mb-3" value="@result.Value.ShortAddress" readonly />
+
+                    <label class="form-label">Full form</label>
+                    <input class="form-control font-monospace" value="@result.Value.FullAddress" readonly />
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@code {
+    private string input = string.Empty;
+    private Ipv6Result? result = null;
+    private string? errorMessage = null;
+
+    private void Update()
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            result = null;
+            errorMessage = null;
+            return;
+        }
+
+        try
+        {
+            result = Ipv6Formatter.Format(input);
+            errorMessage = null;
+        }
+        catch (ArgumentException ex)
+        {
+            result = null;
+            errorMessage = ex.Message;
+        }
+    }
+}
