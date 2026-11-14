@@ -10,7 +10,7 @@
         <div class="card mb-4">
             <div class="card-body p-4">
                 <label class="form-label">IPv6 address</label>
-                <input class="form-control font-monospace" placeholder="2001:db8::1"
+                <input class="form-control font-monospace"
                        @bind="input" @bind:event="oninput" @bind:after="Update" />
             </div>
         </div>
@@ -37,9 +37,14 @@
 </div>
 
 @code {
-    private string input = string.Empty;
+    private string input = "2001:db8::1";
     private Ipv6Result? result = null;
     private string? errorMessage = null;
+
+    protected override void OnInitialized()
+    {
+        Update();
+    }
 
     private void Update()
     {
